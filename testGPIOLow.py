@@ -31,7 +31,7 @@ while True:
         else:
                 print "D2 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
                            
 	GPIO.output(15,GPIO.LOW)
         GPIO.output(19,GPIO.HIGH)        # set channel 10
@@ -45,7 +45,7 @@ while True:
         else:
                 print "D3 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
 	GPIO.output(15,GPIO.HIGH)
         GPIO.output(19,GPIO.LOW)        # set channel 9
@@ -58,7 +58,7 @@ while True:
         else:
                 print "D4 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
 	GPIO.output(15,GPIO.LOW)
         GPIO.output(19,GPIO.LOW)        # set channel 8
@@ -71,7 +71,7 @@ while True:
         else:
                 print "D5 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
         GPIO.output(15,GPIO.HIGH)
         GPIO.output(19,GPIO.HIGH)        # set channel 7
@@ -84,7 +84,7 @@ while True:
         else:
                 print "D6 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
 	GPIO.output(15,GPIO.LOW)
         GPIO.output(19,GPIO.HIGH)        # set channel 6
@@ -97,7 +97,7 @@ while True:
         else:
                 print "D7 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
 
 	GPIO.output(15,GPIO.LOW)
@@ -111,7 +111,7 @@ while True:
         else:
                 print "D8 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
 	GPIO.output(15,GPIO.LOW)
         GPIO.output(19,GPIO.HIGH)        # set channel 6
@@ -124,7 +124,7 @@ while True:
         else:
                 print "D9 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
         GPIO.output(15,GPIO.LOW)
         GPIO.output(19,GPIO.HIGH)        # set channel 6
@@ -137,7 +137,7 @@ while True:
         else:
                 print "D10 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
 	GPIO.output(15,GPIO.LOW)
         GPIO.output(19,GPIO.HIGH)        # set channel 6
@@ -150,7 +150,7 @@ while True:
         else:
                 print "D11 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
 
 	GPIO.output(15,GPIO.LOW)
@@ -164,7 +164,7 @@ while True:
         else:
                 print "D12 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
         GPIO.output(15,GPIO.LOW)
         GPIO.output(19,GPIO.HIGH)        # set channel 6
@@ -178,7 +178,7 @@ while True:
                 print "D13 OK!"
         #GPIO.setup(21,GPIO.LOW)
 
-	time.sleep(2)
+	time.sleep(0.5)
         break
 
 
