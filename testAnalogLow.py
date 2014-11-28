@@ -34,7 +34,7 @@ while True:
         else:
                 print "A0 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
         GPIO.output(15,GPIO.HIGH)
         GPIO.output(19,GPIO.LOW)        # set channel 5
@@ -48,7 +48,7 @@ while True:
         else:
                 print "A1 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
         GPIO.output(15,GPIO.LOW)
         GPIO.output(19,GPIO.HIGH)        # set channel 6
@@ -61,7 +61,7 @@ while True:
         else:
                 print "A2 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
 	GPIO.output(15,GPIO.LOW)
         GPIO.output(19,GPIO.LOW)        # set channel 4
@@ -74,7 +74,7 @@ while True:
         else:
                 print "A3 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
 	GPIO.output(15,GPIO.LOW)
         GPIO.output(19,GPIO.HIGH)        # set channel 2
@@ -87,7 +87,7 @@ while True:
         else:
                 print "A4 OK!"
         #GPIO.setup(21,GPIO.LOW)
-        time.sleep(2)
+        time.sleep(0.5)
 
         GPIO.output(15,GPIO.HIGH)
         GPIO.output(19,GPIO.LOW)        # set channel 1
@@ -99,7 +99,7 @@ while True:
                 print "A5 Failed"
         else:
                 print "A5 OK!"
-	time.sleep(2)
+	time.sleep(0.5)
         break
 print "Tested Analog"
 GPIO.cleanup()

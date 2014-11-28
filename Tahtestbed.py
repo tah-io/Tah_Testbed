@@ -20,39 +20,39 @@ while True:
 
 #first Test for Analog pins 
 	   
-	    	os.chdir("/home/pi/Ali/tah-testbed/Vikas/Tahsketches/setAnalogLow/")
+	    	os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setAnalogLow/")
 	    	time.sleep(1)
 	    	os.system("make")
             	os.system("make upload")
             	print "Testing For Analog Low State"
-	    	os.system("sudo python /home/pi/Ali/tah-testbed/Vikas/testAnalogLow.py")
+	    	os.system("sudo python /home/pi/GitRepo/Tah_Testbed/testAnalogLow.py")
 		print "********************** DONE Analog LOW state Testing**********************"
 		time.sleep(5)
 # NOw test for Analog HIGH states
-		os.chdir("/home/pi/Ali/tah-testbed/Vikas/Tahsketches/setAnalogHigh/")
+		os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setAnalogHigh/")
                 time.sleep(1)
                 os.system("make")
                 os.system("make upload")
                 print "Testing For Analog HIGH State"
-                os.system("sudo python /home/pi/Ali/tah-testbed/Vikas/testAnalogHigh.py")
+                os.system("sudo python /home/pi/GitRepo/Tah_Testbed/testAnalogHigh.py")
                 print "******************* DONE Analog HIGH Testing*****************************"
 	
 # NOw test for Digital LOW  State
-		os.chdir("/home/pi/Ali/tah-testbed/Vikas/Tahsketches/setGPIOLow/")
+		os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setGPIOLow/")
                 time.sleep(1)
                 os.system("make")
                 os.system("make upload")
                 print "Testing For GPIO LOW State"
-                os.system("sudo python /home/pi/Ali/tah-testbed/Vikas/testGPIOLow.py")
+                os.system("sudo python /home/pi/GitRepo/Tah_Testbed/testGPIOLow.py")
                 print "**************** DONE GPIO LOW state  Testing*********************************"
 	
 #Now test for Digital HIGH state
-		os.chdir("/home/pi/Ali/tah-testbed/Vikas/Tahsketches/setGPIOHigh/")
+		os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setGPIOHigh/")
                 time.sleep(1)
                 os.system("make")
                 os.system("make upload")
                 print "Testing For GPIO HIGH State"
-                os.system("sudo python /home/pi/Ali/tah-testbed/Vikas/testGPIOLow.py")
+                os.system("sudo python /home/pi/GitRepo/Tah_Testbed/testGPIOLow.py")
                 print "******************* DONE GPIO HIGH state  Testing**************************"
 	
 		break
