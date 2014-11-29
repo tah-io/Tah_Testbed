@@ -15,22 +15,22 @@ while True:
 	startTest = GPIO.input(11)		#Read Start pulse from Switch S1
 	if((not prev_state) and startTest):	#switch press
 		GPIO.output(23,GPIO.HIGH)		#Buzzer ON
-       		time.sleep(1)
+       		time.sleep(0.5)
 	        GPIO.output(23,GPIO.LOW)		# OFF Buzzer
 
 #first Test for Analog pins 
 	   
 	    	os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setAnalogLow/")
-	    	time.sleep(1)
+	    	#time.sleep(1)
 	    	os.system("make")
             	os.system("make upload")
             	print "Testing For Analog Low State"
 	    	os.system("sudo python /home/pi/GitRepo/Tah_Testbed/testAnalogLow.py")
 		print "********************** DONE Analog LOW state Testing**********************"
-		time.sleep(5)
+		#time.sleep(5)
 # NOw test for Analog HIGH states
 		os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setAnalogHigh/")
-                time.sleep(1)
+                #time.sleep(1)
                 os.system("make")
                 os.system("make upload")
                 print "Testing For Analog HIGH State"
@@ -39,7 +39,7 @@ while True:
 	
 # NOw test for Digital LOW  State
 		os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setGPIOLow/")
-                time.sleep(1)
+                #time.sleep(1)
                 os.system("make")
                 os.system("make upload")
                 print "Testing For GPIO LOW State"
@@ -48,14 +48,14 @@ while True:
 	
 #Now test for Digital HIGH state
 		os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setGPIOHigh/")
-                time.sleep(1)
+                #time.sleep(1)
                 os.system("make")
                 os.system("make upload")
                 print "Testing For GPIO HIGH State"
                 os.system("sudo python /home/pi/GitRepo/Tah_Testbed/testGPIOLow.py")
                 print "******************* DONE GPIO HIGH state  Testing**************************"
 	
-		break
+		#break
 	else:
 		print "Test not Started"
 

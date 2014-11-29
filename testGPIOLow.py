@@ -13,7 +13,7 @@ lcd =  HD44780()
 GPIO.setmode(GPIO.BOARD)
 #GPIO.setup(21,GPIO.IN)
 GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
+GPIO.setup(21, GPIO.LOW)
 while True:
 
         GPIO.setwarnings(False)
@@ -26,7 +26,8 @@ while True:
         print "D2 Testing"
         #GPIO.cleanup(21)
         value0 =GPIO.input(21)          # Mux output pin
-        if value0:
+        print value0
+	if value0:
                 print "D2 Failed"
         else:
                 print "D2 OK!"
@@ -39,8 +40,10 @@ while True:
         GPIO.output(10,GPIO.HIGH)
 
         print "D3 Testing"
-        value1 = GPIO.input(21)         # read input
-        if value1:
+        
+	value1 = GPIO.input(21)         # read input
+        print value1
+	if value1:
                 print "D3 Failed"
         else:
                 print "D3 OK!"
@@ -53,7 +56,8 @@ while True:
         GPIO.output(10,GPIO.HIGH)
         print "D4 Testing"
         value2 = GPIO.input(21)         # read input
-        if value2:
+        print value2
+	if value2:
                 print "D4 Failed"
         else:
                 print "D4 OK!"
