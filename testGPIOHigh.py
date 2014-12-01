@@ -13,7 +13,7 @@ lcd =  HD44780()
 GPIO.setmode(GPIO.BOARD)
 #GPIO.setup(21,GPIO.IN)
 GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(21, GPIO.LOW)
+#GPIO.setup(21, GPIO.LOW)
 while True:
 
         GPIO.setwarnings(False)
