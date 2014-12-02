@@ -6,8 +6,8 @@ import RpiInit
 
 class Tah:
 	
-	RpiInit.init()
 	def testAnalogLow(self):
+		RpiInit.init()
 		
 		count = 0
 
@@ -15,9 +15,6 @@ class Tah:
         	GPIO.output(19,GPIO.HIGH)       # set channel 7 _19
        		GPIO.output(8,GPIO.HIGH)
         	GPIO.output(10,GPIO.LOW)
-        	#lcd.message("A0 Testing")
-        	#Tah_LCD.lcd_byte(LCD_LINE_1, LCD_CMD)
-        	#Tah_LCD.lcd_string("Tah Testing")
 
         	print "A0 Testing"
         	#GPIO.cleanup(21)
@@ -84,12 +81,11 @@ class Tah:
 		return count
 
 		GPIO.cleanup()
-
-
+	
 
 
 	def testAnalogHigh(self):
-		
+		RpiInit.init()		
 		count = 0
 
                 GPIO.output(15,GPIO.HIGH)
@@ -103,7 +99,9 @@ class Tah:
                 print "A0 Testing"
                 #GPIO.cleanup(21)
                 value0 =GPIO.input(21)          # Mux output pin
-                if(value0):
+                print value0
+
+		if(value0):
                         count =count +1
                 time.sleep(0.5)
 
@@ -114,7 +112,9 @@ class Tah:
 
                 print "A1 Testing"
                 value1 = GPIO.input(21)         # read input
-                if(value1):
+                print value1
+
+		if(value1):
                         count = count +1
                 time.sleep(0.5)
 
@@ -125,7 +125,9 @@ class Tah:
 
                 print "A2 Testing"
                 value2 = GPIO.input(21)         # read input
-                if(value2):
+                print value2
+
+		if(value2):
                         count =count +1
                 time.sleep(0.5)
 
@@ -168,7 +170,7 @@ class Tah:
 
 		
 	def testGPIOLow(self):
-		
+		RpiInit.init()
 		count = 0
 
 	        GPIO.output(15,GPIO.HIGH)
@@ -323,7 +325,7 @@ class Tah:
 
 
 	def testGPIOHigh(self):
-		
+		RpiInit.init()
 		count = 0
 
 	        GPIO.output(15,GPIO.HIGH)
@@ -479,4 +481,4 @@ class Tah:
 if __name__ == '__main__':
 	
 	A =Tah()
-	A.testAnalogLow()
+	A.testAnalogHigh()
