@@ -16,8 +16,9 @@ def init():
 	GPIO.setup(15, GPIO.OUT)	# A
 	GPIO.setup(19, GPIO.OUT)	# B
 	GPIO.setup(11,GPIO.IN,pull_up_down=GPIO.PUD_UP)		# input
-	GPIO.setup(13,GPIO.IN,pull_up_down=GPIO.PUD_UP)		# input
-	#GPIO.setup(3, GPIO.LOW)
+	#GPIO.setup(13,GPIO.IN,pull_up_down=GPIO.PUD_UP)		# input
+	GPIO.setup(13, GPIO.OUT)
+	GPIO.setup(13, GPIO.LOW)
         #GPIO.setup(5, GPIO.LOW)
         GPIO.setup(10, GPIO.LOW)
         GPIO.setup(8, GPIO.LOW)

@@ -9,7 +9,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(22, GPIO.OUT, pull_up_down=GPIO.PUD_UP)
 GPIO.output(22,GPIO.LOW)
 
-os.chdir("/home/pi/GitRepo/Tah_Testbed/bootloaders/")
+'''os.chdir("/home/pi/GitRepo/Tah_Testbed/bootloaders/")
 time.sleep(1)
 os.system("./analogHIGH.sh")
 GPIO.output(22,GPIO.LOW)
@@ -18,7 +18,7 @@ os.chdir("/home/pi/GitRepo/Tah_Testbed/bootloaders/")
 time.sleep(1)
 os.system("./analogLOW.sh")
 GPIO.output(22,GPIO.LOW)
-
+'''
 
 
 '''print "Compiled for LED BLINK"

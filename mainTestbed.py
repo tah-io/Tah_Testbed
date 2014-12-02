@@ -35,14 +35,20 @@ while True:
 	startTest = GPIO.input(11)		#Read Start pulse from Switch S1
 	print startTest
 	if((not prev_state) and startTest):	#switch press
-		GPIO.output(23,GPIO.HIGH)		#Buzzer ON
+		GPIO.output(13,GPIO.HIGH)		#Buzzer ON
 		time.sleep(0.5)
-		GPIO.output(23,GPIO.LOW)		# OFF Buzzer
-	        #Test  Start Time Log
+		GPIO.output(13,GPIO.LOW)		# OFF Buzzer
+	        
+		#Test  Start Time Log
 		lcd.__init__()
-		lcd.message('Analog LOW test')
-	
-		StartTime  = datetime.now() 
+		lcd.message("Bootloader \n Burning...")
+		
+		os.chdir("/home/pi/GitRepo/Tah_Testbed/bootloaders/")
+		time.sleep(1)
+		os.system("./atm32U4.sh")
+
+		StartTime  = datetime.now()
+		lcd.message("Analog LOW Test") 
 		#Testing Started here
 		os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setAnalogLow/")
                 os.system("make")
