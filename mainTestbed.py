@@ -10,7 +10,8 @@ from Tah_Testing import Tah
 from lcd_1 import HD44780
 
 
-
+#GPIO.setmode(GPIO.BOARD)
+#GPIO.setup(22, GPIO.OUT, pull_up_down=GPIO.PUD_UP)
 
 prev_state = 0
 testbed = Tah()
@@ -27,7 +28,7 @@ col =0
 count =0
 val =0
 i=0
-while True:
+while (val <2):
 	RpiInit.init()		#initialze all GPIOs
 
 	val =val+1
@@ -35,18 +36,19 @@ while True:
 	startTest = GPIO.input(11)		#Read Start pulse from Switch S1
 	print startTest
 	if((not prev_state) and startTest):	#switch press
-		GPIO.output(13,GPIO.HIGH)		#Buzzer ON
+		GPIO.output(23,GPIO.HIGH)		#Buzzer ON
 		time.sleep(0.5)
-		GPIO.output(13,GPIO.LOW)		# OFF Buzzer
+		GPIO.output(23,GPIO.LOW)		# OFF Buzzer
 	        
 		#Test  Start Time Log
 		lcd.__init__()
-		lcd.message("Bootloader \n Burning...")
+		'''lcd.message("Bootloader \n Burning...")
 		
 		os.chdir("/home/pi/GitRepo/Tah_Testbed/bootloaders/")
 		time.sleep(1)
 		os.system("./atm32U4.sh")
-
+		GPIO.output(22,GPIO.LOW)
+		'''
 		StartTime  = datetime.now()
 		lcd.message("Analog LOW Test") 
 		#Testing Started here
@@ -108,6 +110,10 @@ while True:
 		if(AL ==6 and AH ==6 and DL==12 and DH ==12):
                 	sheet1.write(row,4,"PASS")
 			print 'PASS'
+			GPIO.output(23,GPIO.HIGH)
+			time.sleep(1)
+			GPIO.output(23,GPIO.LOW)
+
 			lcd.__init__()
 			lcd.message('Tested OK!')
 		else:
@@ -124,4 +130,4 @@ while True:
 
 		book.save("Tah_TestbeReport.xls")
 	else:
-		print 'SW not pressed'
+		print 'Lets Start Test '

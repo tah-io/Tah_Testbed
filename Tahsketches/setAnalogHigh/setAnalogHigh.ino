@@ -7,6 +7,13 @@ void setup()
         pinMode(A3,OUTPUT);
         pinMode(A4,OUTPUT);
         pinMode(A5,OUTPUT);
+
+	for(int i=2;i<=13;i++)
+	{
+		pinMode(i,OUTPUT);
+	}
+
+
 }
 
 void loop()
@@ -17,6 +24,13 @@ void loop()
         analogWrite(A3,255);
         analogWrite(A4,255);
         analogWrite(A5,255);
+	
+	for(int i=2;i<=13;i++)
+	{
+		digitalWrite(i,HIGH);
+		delay(1);
+	}
+
 }
 
 
