@@ -23,12 +23,19 @@ lcd.message('starting')
 
 book = xlwt.Workbook(encoding="utf-8") 
 sheet1 = book.add_sheet("Tah First Batch ") 
+
+sheet1.write(2,0, 'Sr.No')
+sheet1.write(2,1,"Start Time")
+sheet1.write(2,2,"End Time")
+sheet1.write(2,3,"Elapsed Time")
+sheet1.write(2,4,"Remark")
+
 row =5
 col =0
 count =0
 val =0
 i=0
-while (val <2):
+while (val<2):
 	RpiInit.init()		#initialze all GPIOs
 
 	val =val+1
@@ -94,35 +101,49 @@ while (val <2):
 		print DH
 		print "Done Testing"
 
-		EndTime  = datetime.now()	
 		
-		ElapsedTime = EndTime - StartTime
-		print "ElapsedTime:",ElapsedTime
-
+		
+		sheet1.write(row,0,str(count))
 		sheet1.write(row,1,str(StartTime))
-		sheet1.write(row,2,str(EndTime))
-		sheet1.write(row,3,str(ElapsedTime))
-		#sheet1.write(row,4,"PASS")
+	
 
 		row = row+1 
 		count = count+1
 		
 		if(AL ==6 and AH ==6 and DL==12 and DH ==12):
+
+			os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/ArdSCL/")	# Upload ArdSCL sketche
+   		        os.system("make")
+                	os.system("make upload")
+			
+			EndTime  = datetime.now()	
+				
+			ElapsedTime = EndTime - StartTime
+			print "ElapsedTime:",ElapsedTime
+
+			sheet1.write(row,2,str(EndTime))
+			sheet1.write(row,3,str(ElapsedTime))
+			
                 	sheet1.write(row,4,"PASS")
 			print 'PASS'
+
 			GPIO.output(23,GPIO.HIGH)
 			time.sleep(1)
 			GPIO.output(23,GPIO.LOW)
-
+               	 	
 			lcd.__init__()
 			lcd.message('Tested OK!')
+			
 		else:
+			sheet1.write(row,2,str(EndTime))
+                        sheet1.write(row,3,str(ElapsedTime))
+
                 	sheet1.write(row,4,"Failed")
 			print 'Failed'
 			lcd.__init__()
 			lcd.message('Failed')
 			
-			while (i<4):
+			while(i<2):			
 				GPIO.output(23,GPIO.HIGH)
 				time.sleep(0.5)
 				GPIO.output(23,GPIO.LOW)
