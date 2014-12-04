@@ -24,7 +24,7 @@ lcd.message('starting')
 book = xlwt.Workbook(encoding="utf-8") 
 sheet1 = book.add_sheet("Tah First Batch ") 
 
-sheet1.write(2,0, 'Sr.No')
+sheet1.write(2,0,"Sr.No")
 sheet1.write(2,1,"Start Time")
 sheet1.write(2,2,"End Time")
 sheet1.write(2,3,"Elapsed Time")
@@ -107,8 +107,8 @@ while (val<2):
 		sheet1.write(row,1,str(StartTime))
 	
 
-		row = row+1 
-		count = count+1
+		#row = row+1 
+		#count = count+1
 		
 		if(AL ==6 and AH ==6 and DL==12 and DH ==12):
 
@@ -133,8 +133,15 @@ while (val<2):
                	 	
 			lcd.__init__()
 			lcd.message('Tested OK!')
-			
+			#book.save("Vikas.xls")
+
 		else:
+			
+			EndTime  = datetime.now()
+
+                        ElapsedTime = EndTime - StartTime
+                        print "ElapsedTime:",ElapsedTime
+
 			sheet1.write(row,2,str(EndTime))
                         sheet1.write(row,3,str(ElapsedTime))
 
@@ -148,7 +155,11 @@ while (val<2):
 				time.sleep(0.5)
 				GPIO.output(23,GPIO.LOW)
 				i=i+1
+		
+		row = row+1
+                count = count+1
 
-		book.save("Tah_TestbeReport.xls")
 	else:
 		print 'Lets Start Test '
+
+book.save("Vikas.xls")
