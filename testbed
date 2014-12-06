@@ -1,0 +1,23 @@
+ #! /bin/sh
+# /etc/init.d/testbed
+
+case "$1" in
+  start)
+    echo "Starting Testbed"
+    # run application you want to start
+    python /usr/local/sbin/mainTestbed.py &
+    ;;
+  stop)
+    echo "Stopping Testbed Testing"
+    # kill application you want to stop
+    killall python
+    ;;
+  *)
+    echo "Usage: /etc/init.d/testbed{start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
+
+

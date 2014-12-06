@@ -1,7 +1,6 @@
 # This script will upload the Arduino test sketches to Tah and test for Analog LOW-HIGH and Digital LOW-HIGH states
 
 import RPi.GPIO as GPIO
-import csv
 import os
 import time
 import RpiInit
@@ -22,10 +21,14 @@ lcd.__init__()
 lcd.clear()
 lcd.message('starting')
 
-f = open('TestBedLog.csv','wb')
-writer = csv.writer(f)
-writer.writerow( ('Sr.No', 'Start Time', 'End Time','Elapsed Time','Remark') )
-	
+book = xlwt.Workbook(encoding="utf-8") 
+sheet1 = book.add_sheet("Tah First Batch ") 
+
+sheet1.write(2,0,"Sr.No")
+sheet1.write(2,1,"Start Time")
+sheet1.write(2,2,"End Time")
+sheet1.write(2,3,"Elapsed Time")
+sheet1.write(2,4,"Remark")
 
 row =5
 col =0
@@ -74,7 +77,7 @@ while True:
         	AH = testbed.testAnalogHigh()
 		print AH
 
-# Now test for Digital LOW  State
+# NOw test for Digital LOW  State
 		lcd.__init__()
 		lcd.message('GPIO LOW Test')
 
@@ -85,7 +88,7 @@ while True:
 		DL = testbed.testGPIOLow()
 		print DL
 
-# Now test for Digital HIGH state
+#Now test for Digital HIGH state
 		lcd.__init__()
 		lcd.message('GPIO HIGH Test')
 
@@ -100,6 +103,13 @@ while True:
 
 		
 		
+		sheet1.write(row,0,str(count))
+		sheet1.write(row,1,str(StartTime))
+	
+
+		#row = row+1 
+		#count = count+1
+
 		if(AL ==6 and AH ==6 and DL==12 and DH ==12):
 
 			os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/ArdSCL/")	# Upload ArdSCL sketche
@@ -112,9 +122,11 @@ while True:
 			print "ElapsedTime:",ElapsedTime
 			#print "Start Time:",StartTime
 	
-			writer.writerow((i+1, StartTime, EndTime,ElapsedTime,'PASS')) 
-						
-                	print 'PASS'
+			sheet1.write(row,2,str(EndTime))
+			sheet1.write(row,3,str(ElapsedTime))
+			
+                	sheet1.write(row,4,"PASS")
+			print 'PASS'
 			
 			row= row+1
 			count=count+1
@@ -134,8 +146,10 @@ while True:
                		ElapsedTime = EndTime - StartTime
                 	print "ElapsedTime:",ElapsedTime
 
-			writer.writerow((i+1, StartTime, EndTime,ElapsedTime,'Failed')) 
+			sheet1.write(row,2,str(EndTime))
+                	sheet1.write(row,3,str(ElapsedTime))
 
+                	sheet1.write(row,4,"Failed")
 			print 'Failed'
 			lcd.__init__()
 			lcd.message('Failed')
@@ -151,13 +165,11 @@ while True:
 			time.sleep(0.5)
 			GPIO.output(23,GPIO.LOW)
 	
-	else:
-		print "Start Test"
-			
-f.close()
-print open('TestBedLog.csv','r').read()
+			print "Write Failed"
+	
+book.save("Vikas.xls")
 
 	
 	
 		
-
+#book.save("Vikas.xls")
