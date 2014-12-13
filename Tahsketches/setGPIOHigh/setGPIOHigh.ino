@@ -8,13 +8,25 @@ void setup()
    {
      pinMode(pin, OUTPUT);                      //SET all GPIO as OUTPUT
    }
-
-   Serial.begin(9600);
+/* pinMode(18,OUTPUT);
+ pinMode(19,OUTPUT);
+ pinMode(20,OUTPUT);
+ pinMode(21,OUTPUT);
+ pinMode(22,OUTPUT);
+ pinMode(23,OUTPUT);
+*/   
 }
 
 void loop()
 {
 
+	/*digitalWrite(18,HIGH);
+	digitalWrite(19,HIGH);
+	digitalWrite(20,HIGH);
+ 	digitalWrite(21,HIGH);
+	digitalWrite(22,HIGH);
+	digitalWrite(23,HIGH);
+	*/
         for(int count =Min_pin; count<= Max_pin;count++)
         {
                 digitalWrite(count,HIGH);                        //SET all GPIO to LOW

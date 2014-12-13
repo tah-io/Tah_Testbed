@@ -20,9 +20,9 @@ lcd = HD44780()
 
 lcd.__init__()
 lcd.clear()
-lcd.message('starting')
+lcd.message('Star The Test...')
 
-f = open('TestBedLog.csv','wb')
+f = open('13DEC_Log.csv','wb')
 writer = csv.writer(f)
 writer.writerow( ('Sr.No', 'Start Time', 'End Time','Elapsed Time','Remark') )
 	
@@ -46,26 +46,28 @@ while True:
 	        
 		#Test  Start Time Log
 		lcd.__init__()
-		'''lcd.message("Bootloader \n Burning...")
+#        lcd.message("Bootloader \n Burning...")
 		
-		os.chdir("/home/pi/GitRepo/Tah_Testbed/bootloaders/")
-		time.sleep(1)
-		os.system("./atm32U4.sh")
-		GPIO.output(22,GPIO.LOW)
-		'''
+#		os.chdir("/home/pi/GitRepo/Tah_Testbed/bootloaders/")#
+#		time.sleep(1)
+#		os.system("./atm32U4.sh")
+#		GPIO.output(22,GPIO.LOW)
 		StartTime  = datetime.now()
-		lcd.message("Analog LOW Test") 
-		#Testing Started here
-		os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setAnalogLow/")
-        	os.system("make")
-        	os.system("make upload")
-		time.sleep(1)
-		AL = testbed.testAnalogLow()
-        	print AL 	
-	
+
+#        lcd.message("Analog LOW Test") #
+#		#Testing Started here
+#		os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setAnalogLow/")
+ #       	os.system("make")
+  #      	os.system("make upload")
+#		time.sleep(1)
+#		AL = testbed.testAnalogLow()
+ #       	print AL
+        
+
+        
 # Now test for Analog HIGH states
 		lcd.__init__()
-		lcd.message('Analog HIGH Test')
+		lcd.message('Analog Testing...')
 
         	os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setAnalogHigh/")
         	os.system("make")
@@ -75,19 +77,18 @@ while True:
 		print AH
 
 # Now test for Digital LOW  State
-		lcd.__init__()
-		lcd.message('GPIO LOW Test')
-
-        	os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setGPIOLow/")
-        	os.system("make")
-        	os.system("make upload")
-		time.sleep(1)
-		DL = testbed.testGPIOLow()
-		print DL
-
+#		lcd.__init__()
+#		lcd.message('GPIO LOW Test')
+##
+  #      	os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setGPIOLow/")
+   #     	os.system("make")
+    #    	os.system("make upload")
+#		time.sleep(1)
+#		DL = testbed.testGPIOLow()
+#		print DL
 # Now test for Digital HIGH state
 		lcd.__init__()
-		lcd.message('GPIO HIGH Test')
+		lcd.message('GPIO Testing...')
 
         	os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/setGPIOHigh/")
         	os.system("make")
@@ -97,67 +98,53 @@ while True:
 	
 		print DH
 		print "Done Testing"
+	
 
-		
-		
-		if(AL ==6 and AH ==6 and DL==12 and DH ==12):
+		if(AH==6 and DH >=10):
+	        	'''lcd.__init__()
+			lcd.message('Uploading ArdSCL')'''
 
-			os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/ArdSCL/")	# Upload ArdSCL sketche
-   			os.system("make")
-                	os.system("make upload")
+	        	os.chdir("/home/pi/GitRepo/Tah_Testbed/Tahsketches/ArdSCL/")	# Upload ArdSCL sketche
+        		os.system("make")
+	        	os.system("make upload")
 			
-			EndTime  = datetime.now()	
+        		EndTime  = datetime.now()	
 				
-			ElapsedTime = EndTime - StartTime
-			print "ElapsedTime:",ElapsedTime
-			#print "Start Time:",StartTime
+	        	ElapsedTime = EndTime - StartTime
+        		print "ElapsedTime:",ElapsedTime
+	        	#print "Start Time:",StartTime
 	
-			writer.writerow((i+1, StartTime, EndTime,ElapsedTime,'PASS')) 
-						
-                	print 'PASS'
-			
-			row= row+1
-			count=count+1
+ 		       	writer.writerow((i+1, StartTime, EndTime,ElapsedTime,'PASS')) 
+	        	print 'PASS'
+			i=i+1
 
-			GPIO.output(23,GPIO.HIGH)
-			time.sleep(1)
-			GPIO.output(23,GPIO.LOW)
+  		      	GPIO.output(23,GPIO.HIGH)
+	        	time.sleep(1)
+        		GPIO.output(23,GPIO.LOW)
                	 	
-			lcd.__init__()
-			lcd.message('Tested OK!')
-			
-	
+	        	lcd.__init__()
+        		lcd.message('Tested OK!')
+		
 		else:
-			
 			EndTime  = datetime.now()
 
-               		ElapsedTime = EndTime - StartTime
-                	print "ElapsedTime:",ElapsedTime
+                        ElapsedTime = EndTime - StartTime
+                        print "ElapsedTime:",ElapsedTime
 
-			writer.writerow((i+1, StartTime, EndTime,ElapsedTime,'Failed')) 
+                        writer.writerow((i+1, StartTime, EndTime,ElapsedTime,'Failed'))
+                        i=i+1
 
-			print 'Failed'
-			lcd.__init__()
-			lcd.message('Failed')
-			
-			row = row+1
-			count = count+1
-			
-			GPIO.output(23,GPIO.HIGH)
-			time.sleep(0.5)
-			GPIO.output(23,GPIO.LOW)
-			time.sleep(0.5)
-			GPIO.output(23,GPIO.HIGH)
-			time.sleep(0.5)
-			GPIO.output(23,GPIO.LOW)
-	
+                        GPIO.output(23,GPIO.HIGH)
+                        time.sleep(2)
+                        GPIO.output(23,GPIO.LOW)
+
+                        lcd.__init__()
+                        lcd.message('Failed !')
+
+				
 	else:
 		print "Start Test"
 			
 f.close()
-print open('TestBedLog.csv','r').read()
-
-	
-	
-		
+#print open('TestBedLog.csv','r').read()
 
