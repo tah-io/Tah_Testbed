@@ -22,7 +22,7 @@ lcd.__init__()
 lcd.clear()
 lcd.message('Star The Test...')
 
-f = open('13DEC_Log.csv','wb')
+f = open('13DEC_Log1.csv','wb')
 writer = csv.writer(f)
 writer.writerow( ('Sr.No', 'Start Time', 'End Time','Elapsed Time','Remark') )
 	
@@ -44,6 +44,8 @@ while True:
 		time.sleep(0.5)
 		GPIO.output(23,GPIO.LOW)		# OFF Buzzer
 	        
+		#Change port 
+		os.system("sudo python /home/pi/GitRepo/Tah_Testbed/testbedpatch.py")
 		#Test  Start Time Log
 		lcd.__init__()
 #        lcd.message("Bootloader \n Burning...")
@@ -135,7 +137,7 @@ while True:
                         i=i+1
 
                         GPIO.output(23,GPIO.HIGH)
-                        time.sleep(2)
+                        time.sleep(0.5)
                         GPIO.output(23,GPIO.LOW)
 
                         lcd.__init__()
