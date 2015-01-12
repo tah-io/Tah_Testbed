@@ -8,7 +8,7 @@ import RpiInit
 import xlwt
 from datetime import datetime
 from Tah_Testing import Tah 
-from lcd_1 import HD44780
+from lcd import HD44780
 
 
 #GPIO.setmode(GPIO.BOARD)
