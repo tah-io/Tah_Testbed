@@ -19,7 +19,7 @@ lcd.message('Begin Testing')
 datestamp =  "%s-%s-%s" % (datetime.now().year,datetime.now().month, datetime.now().day)
 datestamp = 'logs/'+datestamp + '.csv'
 
-f = open(datestamp, 'w+')
+f = open(datestamp, 'a+')
 writer = csv.writer(f)
 writer.writerow( ('Sr.No', 'Start Time', 'End Time','Elapsed Time','Remark') )
 
@@ -28,10 +28,10 @@ col =0
 count =0
 val =0
 i=0
-RpiInit.init()		#initialze all GPIOs
 
 try : 
     while True:
+	RpiInit.init()
         val =val+1
         # Switch input 
         startTest = GPIO.input(11)		#Read Start pulse from Switch S1
@@ -47,7 +47,7 @@ try :
             ls = subprocess.Popen('ls', stdout=subprocess.PIPE)
             grep = subprocess.check_output(('grep','ACM[0-9]'), stdin=ls.stdout)
             ls.wait()
-            port = grep
+            port = grep.rstrip()
             print port
             
             #Test  Start Time Log
