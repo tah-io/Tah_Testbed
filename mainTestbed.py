@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-import csv, os, time, RpiInit
+import csv, os, time, RpiInit, subprocess
 from datetime import datetime
 from Tah_Testing import Tah 
 from lcd import HD44780
@@ -42,7 +42,14 @@ try :
             GPIO.output(23,GPIO.LOW)		# OFF Buzzer
             
             #Change port 
-            os.system("sudo python /home/pi/Tah_Testbed/testbedpatch.py")
+#            os.system("sudo python /home/pi/Tah_Testbed/testbedpatch.py")
+            os.chdir('/dev') # change this to /dev eventually
+            ls = subprocess.Popen('ls', stdout=subprocess.PIPE)
+            grep = subprocess.check_output(('grep','ACM[0-9]'), stdin=ls.stdout)
+            ls.wait()
+            port = grep
+            print port
+            
             #Test  Start Time Log
             lcd.__init__()
             StartTime  = datetime.now()
@@ -52,7 +59,7 @@ try :
             lcd.__init__()
             lcd.message('Analog Testing')
 
-            os.chdir("/home/pi/Tah_Testbed/Tahsketches/setAnalogHigh/")
+            os.chdir("/home/pi/Tah_Testbed/"+port+"/setAnalogHigh/")
             os.system("make")
             os.system("make upload")
             time.sleep(1)
@@ -62,7 +69,7 @@ try :
             lcd.__init__()
             lcd.message('GPIO Testing...')
 
-            os.chdir("/home/pi/Tah_Testbed/Tahsketches/setGPIOHigh/")
+            os.chdir("/home/pi/Tah_Testbed/"+port+"/setGPIOHigh/")
             os.system("make")
             os.system("make upload")
             time.sleep(1)
@@ -76,8 +83,8 @@ try :
                 '''lcd.__init__()
                 lcd.message('Uploading ArdSCL')'''
 
-                os.chdir("/home/pi/Tah_Testbed/Tahsketches/ArdSCL/")	# Upload ArdSCL sketche
-                os.system("make")
+                os.chdir("/home/pi/Tah_Testbed/"+port+"/ArdSCL/")	# Upload ArdSCL sketche
+#                os.system("make")
                 os.system("make upload")
                 
                 EndTime  = datetime.now()	
