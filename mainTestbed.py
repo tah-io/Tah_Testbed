@@ -117,4 +117,5 @@ try :
         else:
             print "Start Test"
 except KeyboardInterrupt:			
+    print "Done testing"
     f.close()    
