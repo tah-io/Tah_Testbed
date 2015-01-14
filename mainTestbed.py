@@ -1,5 +1,3 @@
-# This script will upload the Arduino test sketches to Tah and test for Analog LOW-HIGH and Digital LOW-HIGH states
-
 import RPi.GPIO as GPIO
 import csv, os, time, RpiInit
 from datetime import datetime
@@ -18,7 +16,7 @@ lcd.__init__()
 lcd.clear()
 lcd.message('Begin Testing')
 
-datestamp =  "%s-%s-%s" % (datetime.datetime.now().year,datetime.datetime.now().month, datetime.datetime.now().day)
+datestamp =  "%s-%s-%s" % (datetime.now().year,datetime.now().month, datetime.now().day)
 datestamp = 'logs/'+datestamp + '.csv'
 
 f = open(datestamp, 'w+')
